@@ -18,10 +18,10 @@ api/parties/:id/ptctuers /GET
 
 ## Marques 
 Testing at the end
+## Endpoint
 api/auth/login   /POST
 api/auth/register /POST
 api/users /GET ==> restricted 
-## Endpoint
 api/categories  /GET /POST /PUT /DELETE 
 api/categories/:id  /GET (getById)
 api/categories/:id/parties   /GET  

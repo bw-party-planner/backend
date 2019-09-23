@@ -24,7 +24,7 @@ module.exports = {
 =======
 >>>>>>> 4449e0aeb20c064f1ee4e7900f3b95093ee49878
     connection: {
-      filename: './data/blog.db3',
+      filename: './database/blog.db3',
     },
     pool: {
       afterCreate: (conn, done) => {
@@ -32,11 +32,11 @@ module.exports = {
       },
     },
     migrations: {
-      directory: './data/migrations',
+      directory: './database/migrations',
       tableName: 'knex_migrations',
     },
     seeds: {
-      directory: './data/seeds',
+      directory: './database/seeds',
     },
   },
 };

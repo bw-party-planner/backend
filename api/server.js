@@ -3,7 +3,7 @@ const server = express();
 const cors = require('cors');
 
 const authRouter = require('../auth/auth-router.js');
-const users = require('../users/user-router.js');
+const users = require('../users/users-router.js');
 const partiesRouter = require('../parties/parties-router.js');
 const picturesRouter = require('../pictures/pictures-router.js');
 const shoppingListsRouter = require('../shoppingList/shopingLists-router.js');

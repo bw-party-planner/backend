@@ -2,7 +2,6 @@ module.exports = {
   development: {
     client: 'sqlite3',
     useNullAsDefault: true,
-<<<<<<< HEAD
     connection: {
       filename: './database/auth.db3',
     },
@@ -21,8 +20,6 @@ module.exports = {
 
   staging: {
     client: 'postgresql',
-=======
->>>>>>> 4449e0aeb20c064f1ee4e7900f3b95093ee49878
     connection: {
       filename: './database/blog.db3',
     },

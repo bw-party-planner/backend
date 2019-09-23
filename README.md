@@ -1,8 +1,5 @@
 # backend
 
-
- 
-
 ## Ann
 Testing at the end
 set up sever /foulders
@@ -28,6 +25,6 @@ api/users /GET ==> restricted
 api/categories  /GET /POST /PUT /DELETE 
 api/categories/:id  /GET (getById)
 api/categories/:id/parties   /GET  
-api/todos /GET /POST /PUT /DELETE 
+api/todosList /GET /POST /PUT /DELETE 
 api/shoppinglists  /GET /POST /PUT /DELETE 
 api/pictures /GET /POST /PUT /DELETE

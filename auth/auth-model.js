@@ -11,14 +11,14 @@ module.exports = (req, res, next) => {
       jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
         if(err) {
           //token expired or is invalid
-          res.status(401).json({ message: 'You shall not pass'});
+          res.status(401).json({ message: 'Invalid authorization'});
         } else {
           // token is good
-          req.user = user
+          req.user = user;
           next();
         }
       });
   } else {
-    res.status(401).json({ you: 'shall not pass'});
+    res.status(401).json({ you: 'Please try again'});
   };
   };

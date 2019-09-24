@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     if (picture) {
       res.json(picture);
     } else {
-      res.status(404).json({ message: 'Could not find picture with given id.' })
+      res.status(404).json({ message: 'Could not find picture with given id.' });
     }
   })
   .catch(err => {

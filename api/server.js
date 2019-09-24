@@ -3,6 +3,7 @@ const server = express();
 const cors = require('cors');
 
 const authRouter = require('../auth/auth-router.js');
+const authenticate = require('../auth/auth-model.js');
 const users = require('../users/users-router.js');
 const partiesRouter = require('../parties/parties-router.js');
 const picturesRouter = require('../pictures/pictures-router.js');
@@ -14,7 +15,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/auth', authRouter);
-server.use('/api/users', users);
+server.use('/api/users', authenticate, users);
 server.use('/api/parties', partiesRouter);
 server.use('/api/pictures', picturesRouter);
 server.use('/api/shoppingLists', shoppingListsRouter);

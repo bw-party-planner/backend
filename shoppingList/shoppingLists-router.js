@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     if (list) {
       res.json(list);
     } else {
-      res.status(404).json({ message: 'Could not find shopping list with given id.' })
+      res.status(404).json({ message: 'Could not find shopping list with given id.' });
     }
   })
   .catch(err => {

@@ -5,11 +5,11 @@ const db = require('./parties-module.js')
 router.get('/', (req, res) => {
   db.getParties()
     .then(response => {
-      res.status(200).json(response)
+      res.status(200).json(response);
     })
     .catch(error => {
-      res.status(500).json(error)
-    })
+      res.status(500).json(error);
+    });
     
   });
 

@@ -10,6 +10,7 @@ const shoppingListsRouter = require('../shoppingList/shoppingLists-router.js');
 const todoListsRouter = require('../todoList/todoLists-router.js');
 const categoriesRouter = require('../categories/categories-router.js');
 
+
 server.use(express.json());
 server.use(cors());
 

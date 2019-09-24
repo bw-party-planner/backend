@@ -22,7 +22,7 @@ function getById(id) {
 
 function insert(category) {
   return db('categories')
-    .insert(categoryData)
+    .insert(category)
     .then(ids => {
       return getById(ids[0]);
     });

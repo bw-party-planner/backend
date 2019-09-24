@@ -5,9 +5,9 @@ const express = require('express');
  const jwt = require('jsonwebtoken');
  
  const Users = require('../users/users-model.js');
- const secrets = require('../config/secrets.js');
+ const secrets = require('../secrets.js');
  
- const router = require = express.Router();
+ const router = express.Router();
  
  router.post('/register', (req, res) => {
    // implement registration

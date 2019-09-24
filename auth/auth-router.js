@@ -13,7 +13,7 @@ const express = require('express');
  
   const user = req.body;
    const hash = bcrypt.hashSync(user.password, 10);
-   const user.password = hash;
+    user.password = hash;
  
    Users.add(user)
      .then(saved => {

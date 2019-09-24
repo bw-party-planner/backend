@@ -11,7 +11,7 @@ const express = require('express');
  router.post('/register', (req, res) => {
    // implement registration
  
-   let user = req.body;
+  const user = req.body;
    const hash = bcrypt.hashSync(user.password, 10);
    user.password = hash;
  
@@ -25,7 +25,7 @@ const express = require('express');
  });
  
  router.post('/login', (req, res) => {
-   let { username, password } = req.body;
+   const { username, password } = req.body;
  
    Users.findBy({ username })
      .first()

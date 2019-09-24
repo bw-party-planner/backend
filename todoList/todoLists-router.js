@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
 
   db('todoLists').where({ id })
   .then(todo => {
-    const todo = todos[0];
+    const todos = todos[0];
 
     if (todo) {
       res.json(todo);

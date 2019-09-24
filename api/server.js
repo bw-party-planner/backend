@@ -6,7 +6,7 @@ const authRouter = require('../auth/auth-router.js');
 const users = require('../users/users-router.js');
 const partiesRouter = require('../parties/parties-router.js');
 const picturesRouter = require('../pictures/pictures-router.js');
-const shoppingListsRouter = require('../shoppingList/shopingLists-router.js');
+const shoppingListsRouter = require('../shoppingList/shoppingLists-router.js');
 const todoListsRouter = require('../todoList/todoLists-router.js');
 const categoriesRouter = require('../categories/categories-router.js');
 

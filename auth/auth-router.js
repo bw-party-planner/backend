@@ -1,7 +1,5 @@
 const express = require('express');
  const db = require('./auth-model.js')
-
-const axios = require('axios');
  const bcrypt = require('bcryptjs');
  const jwt = require('jsonwebtoken');
  
@@ -10,7 +8,7 @@ const axios = require('axios');
  
  const router = express.Router();
  
- axios.post('/register', (req, res) => {
+ router.post('/register', (req, res) => {
    // implement registration
  
    let user = req.body;
@@ -26,7 +24,7 @@ const axios = require('axios');
      });
  });
  
- axios.post('/login', (req, res) => {
+ router.post('/login', (req, res) => {
    let { username, password } = req.body;
  
    Users.findBy({ username })

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
- const db = require('./shoppingLists-model')
+ const db = require('./shoppingLists-model');
 
 router.get('/', (req, res) => {
   db.get()

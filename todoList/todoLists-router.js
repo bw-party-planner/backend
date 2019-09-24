@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
- const db = require('./todoLists-model.js')
+ const db = require('./todoLists-model.js');
 
 router.get('/', (req, res) => {
   db.get()

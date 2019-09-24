@@ -1,6 +1,6 @@
 const db = require('../database/dbConfig.js');
 const jwt = require('jsonwebtoken');
-const secrets = requre('../secrets.js');
+const secrets = requre('../config/secrets.js');
 
 
 module.exports = (req, res, next) => {

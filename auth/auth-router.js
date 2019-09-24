@@ -5,7 +5,7 @@ const express = require('express');
  const jwt = require('jsonwebtoken');
  
  const Users = require('../users/users-model.js');
- const secrets = require('../secrets.js');
+ const secrets = require('../config/secrets.js');
  
  const router = express.Router();
  

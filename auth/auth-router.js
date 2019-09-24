@@ -1,6 +1,5 @@
 const express = require('express');
  const db = require('./auth-model.js')
-
  const bcrypt = require('bcryptjs');
  const jwt = require('jsonwebtoken');
  

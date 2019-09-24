@@ -5,12 +5,18 @@ const db = require('./parties-module.js')
 router.get('/', (req, res) => {
   db.getParties()
     .then(response => {
-      res.status(200).json(response)
+      res.status(200).json(response);
     })
     .catch(error => {
+<<<<<<< HEAD
+      res.status(500).json(error);
+    });
+    
+=======
       console.log(error)
       res.status(500).json({errorMessage: 'The party information could not be retrieved'})
     })
+>>>>>>> 287df2d0d1ec915d64b196dec269f5cceb189e57
   });
 
   router.post('/', validateParty, (req, res) => {

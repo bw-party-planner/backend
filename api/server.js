@@ -1,6 +1,7 @@
 const express = require('express');
 const server = express();
 const cors = require('cors');
+const axios = require('axios');
 
 const authRouter = require('../auth/auth-router.js');
 const authenticate = require('../auth/auth-model.js');

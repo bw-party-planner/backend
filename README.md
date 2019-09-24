@@ -3,8 +3,8 @@
 ## Ann
 - [ ] Testing at the end
 - [x] set up sever and foulders
-- [ ] migrations
-- [ ] seeds
+- [x] migrations
+- [x] seeds
 - [ ] deploy Heroku
 ## Endpoint
 - [ ] `api/parties` /GET /POST /PUT /DELETE 
@@ -25,6 +25,9 @@
 - [ ] `api/categories`  /GET /POST /PUT /DELETE 
 - [ ] `api/categories/:id`  /GET (getById)
 - [ ] `api/categories/:id/parties`   /GET  
-- [ ] `api/todosList` /GET /POST /PUT /DELETE 
-- [ ] `api/shoppinglists`  /GET /POST /PUT /DELETE 
-- [ ] `api/pictures` /GET /POST /PUT /DELETE
+- [ ] `api/todosList` /GET /POST 
+- [ ] `api/todosList/:id`  /PUT /DELETE  
+- [ ] `api/shoppinglists`  /GET /POST 
+- [ ] `api/shoppinglists/:id`  /PUT /DELETE
+- [ ] `api/pictures` /GET /POST 
+- [ ] `api/pictures/:id` /PUT /DELETE

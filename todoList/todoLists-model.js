@@ -11,17 +11,17 @@ module.exports = {
 };
 
 function get() {
-  return db('todoLists');
+  return db('todo_lists');
 }
 
 function getById(id) {
-  return db('todoLists')
+  return db('todo_lists')
     .where({ id })
     .first();
 }
 
 function insert(list) {
-  return db('todoLists')
+  return db('todo_lists')
     .insert(todoData)
     .then(ids => {
       return getById(ids[0]);
@@ -29,13 +29,13 @@ function insert(list) {
 }
 
 function update(id, changes) {
-  return db('todoLists')
+  return db('todo_lists')
     .where({ id })
     .update(changes);
 }
 
 function remove(id) {
-  return db('todoLists')
+  return db('todo_lists')
     .where('id', id)
     .del();
 }

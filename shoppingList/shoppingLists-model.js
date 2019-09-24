@@ -11,17 +11,17 @@ module.exports = {
 };
 
 function get() {
-  return db('shoppingLists');
+  return db('shopping_lists');
 }
 
 function getById(id) {
-  return db('shoppingLists')
+  return db('shopping_lists')
     .where({ id })
     .first();
 }
 
 function insert(list) {
-  return db('shoppingLists')
+  return db('shopping_lists')
     .insert(listData)
     .then(ids => {
       return getById(ids[0]);
@@ -29,13 +29,13 @@ function insert(list) {
 }
 
 function update(id, changes) {
-  return db('shoppingLists')
+  return db('shopping_lists')
     .where({ id })
     .update(changes);
 }
 
 function remove(id) {
-  return db('shoppingLists')
+  return db('shopping_lists')
     .where('id', id)
     .del();
 }

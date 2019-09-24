@@ -3,7 +3,7 @@ const router = express.Router();
  const db = require('./pictures-model.js')
 
 router.get('/', (req, res) => {
-  db('pictures')
+  db.get()
   .then(pictures => {
     res.json(pictures);
   })
@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
@@ -74,5 +75,7 @@ router.delete('/:id', (req, res) => {
     res.status(500).json({ message: 'Failed to delete picture' });
   });
 });
+=======
+>>>>>>> 287df2d0d1ec915d64b196dec269f5cceb189e57
 
 module.exports = router;

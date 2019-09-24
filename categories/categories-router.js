@@ -3,7 +3,7 @@ const router = express.Router();
  const db = require('./categories-model.js') 
 
 router.get('/', (req, res) => {
-  db('categories')
+  db.get()
   .then(categories => {
     res.json(categories);
   })
@@ -12,76 +12,55 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validateId, (req, res) => {
   const { id } = req.params;
 
-  db('categories').where({ id })
+  db.getById(id)
   .then(categories => {
-    const category = categories[0];
-
-    if (category) {
-      res.json(category);
-    } else {
-      res.status(404).json({ message: 'Could not find category with given id.' })
-    }
+   res.status(200).json(categories)
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to get category' });
   });
 });
 
-router.post('/', (req, res) => {
-  const categoryData = req.body;
-
-  db('categories').insert(categoryData)
+router.post('/', validateCategory,(req, res) => {
+  const category = req.body;
+  db.insert(category)
   .then(ids => {
-    res.status(201).json({ created: ids[0] });
+    res.status(201).json(ids);
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to create new category' });
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateId,(req, res) => {
   const { id } = req.params;
-  const changes = req.body;
-
-  db('categories').where({ id }).update(changes)
+  const changes = req.body
+  db.update(id, changes)
   .then(count => {
-    if (count) {
-      res.json({ update: count });
-    } else {
-      res.status(404).json({ message: 'Could not find category with given id' });
-    }
+    res.status(200).json({message: 'the party was updated.'})
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to update category' });
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateId,(req, res) => {
   const { id } = req.params;
 
-  db('categories').where({ id }).del()
+  db.remove(id)
   .then(count => {
-    if (count) {
-      res.json({ removed: count });
-    } else {
-      res.status(404).json({ message: 'Could not find categories with given id' });
-    }
+    res.status(200).json({message: 'the category was deleted.'})
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to delete category' });
   });
 });
 
-router.get('/:id/parties', (req, res) => {
-  const { id } = req.params;
 
-  db('parties').where({ id })
-  .then(parties => {
-    const party = parties[0];
-
+<<<<<<< HEAD
     if (party) {
       res.json(party);
     } else {
@@ -92,5 +71,28 @@ router.get('/:id/parties', (req, res) => {
     res.status(500).json({ message: 'Failed to get party' });
   });
 });
+=======
+function validateId(req, res, next) {
+  const id = req.params.id;
+  db.getById(Number(id))
+      .then(category => {
+          if(category){
+              req.category = category
+              next()
+          } else {
+              res.status(400).json({ message: 'Invalid category id' })
+          }
+      })
+      .catch(() =>{
+              res.status(500)
+              .json({ errorMessage: "error" })
+          })
+};
+>>>>>>> 287df2d0d1ec915d64b196dec269f5cceb189e57
 
+function validateCategory(req, res, next) {
+  if(!req.body) res.status(400).json({ message: "missing category data" })
+  if(!req.body.category) res.status(400).json({ message: "missing required category field" })
+  next()
+};
 module.exports = router;

@@ -1,8 +1,8 @@
 # backend
 
 ## Ann
-- [x] Testing at the end
-- [ ] set up sever and foulders
+- [ ] Testing at the end
+- [x] set up sever and foulders
 - [ ] migrations
 - [ ] seeds
 - [ ] deploy Heroku

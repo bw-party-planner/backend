@@ -1,5 +1,5 @@
 const express = require('express');
- //const db = require('./auth-model.js')
+ const db = require('./auth-model.js')
 
  const bcrypt = require('bcryptjs');
  const jwt = require('jsonwebtoken');
@@ -7,7 +7,7 @@ const express = require('express');
  const Users = require('../users/users-model.js');
  const secrets = require('../config/secrets.js');
  
- const router = require('express').Router();
+ const router = require = express.Router();
  
  router.post('/register', (req, res) => {
    // implement registration

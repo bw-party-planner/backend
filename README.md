@@ -11,8 +11,7 @@
 
 **Categories**
 
-| Method | Endpoint             | Description                                                                                           |--------|----------------------|--------------------------------------------------------------------------------------|                                                                                                                          
-| GET   | /api/categories        | see example|
+| Method | Endpoint             | Description                                                                                           |--------|----------------------|--------------------------------------------------------------------------------------|                 | GET   | /api/categories        | see example|
 | POST  | /api/categories        | Require `category`  |
 | GET   | /api/categories/:id    | Muse be validated id  |
 | PUT   | /api/categories/:id    | Muse be validated id  |
@@ -70,7 +69,7 @@
 
 
 **Party shopping List**
-| Method | Endpoint             | Description |
+| Method | Endpoint             | Description 
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/shoppingList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/shoppingList           | Muse be validated party id / Require `item`, `price`, `party_id` |
@@ -100,7 +99,7 @@
 ```
 
 **Party Todo List**
-| Method | Endpoint             | Description   |
+| Method | Endpoint             | Description   
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/todoList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/todoList           | Muse be validated party id / Require `task`, `party_id` |

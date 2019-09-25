@@ -30,7 +30,7 @@ server.use('/api/todoLists', authenticate, todoListsRouter);
 
 
 server.get('/', (req, res) => {
-    res.send(`<h2>Hello from Express</h2>`)
+    res.send(`<h2>Check out backend's README</h2>`)
   });
 
 module.exports = server;

@@ -132,7 +132,7 @@
 ]
 ```
 
-**Party Pictures**
+
 **Still working on picture endpoints**
 
 

@@ -17,16 +17,16 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/auth', authRouter);
-server.use('/api/categories', authenticate, categoriesRouter);
-server.use('/api/parties', authenticate, partiesRouter);
+server.use('/api/categories', categoriesRouter);
+server.use('/api/parties', partiesRouter);
 
 // for backend
 server.use('/api/users', authenticate, users);
 
 // stretch goal
-server.use('/api/pictures', authenticate,picturesRouter);
-server.use('/api/shoppingLists', authenticate, shoppingListsRouter);
-server.use('/api/todoLists', authenticate, todoListsRouter);
+server.use('/api/pictures', picturesRouter);
+server.use('/api/shoppingLists', shoppingListsRouter);
+server.use('/api/todoLists', todoListsRouter);
 
 
 server.get('/', (req, res) => {

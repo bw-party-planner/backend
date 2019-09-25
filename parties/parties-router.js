@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
       res.status(500).json({ message: 'Failed to get party' });
     });
   });
+  
   router.post('/', validateParty, (req, res) => {
     const party = req.body;
     db.addParty(party)

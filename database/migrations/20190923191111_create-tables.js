@@ -40,7 +40,7 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
   })
   .createTable('shopping_lists', tbl => {
-    tbl.increments();
+    tbl.increments('shopping_id');
     tbl.string('item').notNullable();
     tbl.string('price').notNullable();
     tbl

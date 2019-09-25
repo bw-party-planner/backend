@@ -7,7 +7,17 @@ module.exports = {
     updateParty,
     deleteParty,
     getShopingList,
+    getItemById,
+    getShopingListById,
+    addShopingList,
+    updateItem,
+    deleteItem,
     getTodoList,
+    getTaskById,
+    updateTask,
+    deleteTask,
+    getTodoListById,
+    addTodoList,
     getPictures
   };
 
@@ -42,14 +52,73 @@ module.exports = {
   function getShopingList(party_id) {
     return db('parties as P')
       .join('shopping_lists as S', 'P.id', 'S.party_id')
-      .select('S.item', 'S.price')
+      .select('S.id','S.item', 'S.price')
       .where('S.party_id', party_id)
+  }
+
+  function getItemById(id) {
+    return db('shopping_lists').where({ id }).first();
+  }
+
+  function getShopingListById(id) {
+    return db('shopping_lists as S')
+      .join('parties as P', 'S.id', 'P.id' )
+      .select('S.id','S.item', 'S.price' )
+      .where({'P.id': id}).first();
+  }
+
+  function addShopingList(list) {
+    return db('shopping_lists')
+      .insert(list)
+      .then(ids => {
+        return getShopingListById(ids[0]);
+      })
+  }
+  function updateItem(id, changes) {
+    return db('shopping_lists')
+      .where({ id })
+      .update(changes);
+  }
+
+  function deleteItem(id) {
+    return db('shopping_lists')
+      .where('id', id)
+      .del();
+  }
+ 
+
+  function getTodoListById(id) {
+    return db('todo_lists as T')
+      .join('parties as P', 'T.id', 'P.id' )
+      .select('T.id','T.task')
+      .where({'T.id': id}).first();
+  }
+  function getTaskById(id) {
+    return db('todo_lists').where({ id }).first();
+  }
+  function updateTask(id, changes) {
+    return db('todo_lists')
+      .where({ id })
+      .update(changes);
+  }
+
+  function deleteTask(id) {
+    return db('todo_lists')
+      .where('id', id)
+      .del();
+  }
+  function addTodoList(list) {
+    return db('todo_lists')
+      .insert(list)
+      .then(ids => {
+        return getTodoListById(ids[0]);
+      })
   }
 
   function getTodoList(party_id) {
     return db('parties as P')
       .join('todo_lists as T', 'P.id', 'T.party_id')
-      .select('T.task')
+      .select('T.id','T.task')
       .where('T.party_id', party_id)
   }
 

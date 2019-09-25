@@ -17,12 +17,17 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/auth', authRouter);
+server.use('/api/categories', authenticate, categoriesRouter);
+server.use('/api/parties', authenticate, partiesRouter);
+
+// for backend
 server.use('/api/users', authenticate, users);
-server.use('/api/parties', partiesRouter);
-server.use('/api/pictures', picturesRouter);
-server.use('/api/shoppingLists', shoppingListsRouter);
-server.use('/api/todoLists', todoListsRouter);
-server.use('/api/categories', categoriesRouter);
+
+// stretch goal
+server.use('/api/pictures', authenticate,picturesRouter);
+server.use('/api/shoppingLists', authenticate, shoppingListsRouter);
+server.use('/api/todoLists', authenticate, todoListsRouter);
+
 
 server.get('/', (req, res) => {
     res.send(`<h2>Hello from Express</h2>`)

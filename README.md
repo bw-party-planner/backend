@@ -13,15 +13,6 @@
 
 **Categories**
 
-| name     | type   | required |
-| -------- | ------ | -------- |
-| username | String | Yes      |
-| password | String | Yes      |
-
-
-
-####
-
 | Method | Endpoint             | Description                                                                                           |--------|----------------------|-------------------|              
 | GET   | /api/categories        | see example|
 | POST  | /api/categories        | Require `category`  |
@@ -57,6 +48,7 @@
 ```
 
 **Parties**
+
 | Method | Endpoint             | Description                                                                                           |--------|----------------------|--------------------------------------------------------------------------------------|                                                                                                                                     
 | GET   | /api/parties        |    see example   |
 | POST   | /api/parties           | Require `party_name`, `guests`, `category_id`   |
@@ -81,6 +73,7 @@
 
 
 **Party shopping List**
+
 | Method | Endpoint             | Description 
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/shoppingList           | Muse be validated party id / see example |
@@ -111,6 +104,7 @@
 ```
 
 **Party Todo List**
+
 | Method | Endpoint             | Description   
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/todoList           | Muse be validated party id / see example |
@@ -140,9 +134,4 @@
 **Party Pictures**
 **Still working on picture endpoints**
 
-**Body**
 
-| name     | type   | required |
-| -------- | ------ | -------- |
-| username | String | Yes      |
-| password | String | Yes      |

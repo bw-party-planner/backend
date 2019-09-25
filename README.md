@@ -24,7 +24,8 @@
 ## Endpoint
 - [x] `api/auth/login`   /POST
 - [x] `api/auth/register` /POST
-- [ ] `api/users` /GET ==> restricted 
+- [ ] `api/users` /GET /POST/ /PUT /DELETE ==> restricted 
+- [x] `api/users/:id` /GET
 - [x] `api/categories`  /GET /POST /PUT /DELETE 
 - [x] `api/categories/:id`  /GET (getById) 
 - [x] `api/todosList` /GET 

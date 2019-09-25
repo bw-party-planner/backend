@@ -14,11 +14,7 @@
 | -------- | ------ | -------- |
 | username | String | Yes      |
 | password | String | Yes      |
-| GET   | /api/categories        | see example|
-| POST  | /api/categories        | Require `category`  |
-| GET   | /api/categories/:id    | Muse be validated id  |
-| PUT   | /api/categories/:id    | Muse be validated id  |
-| DELETE| /api/categories/:id    | Muse be validated id  |
+
 
 
 ####

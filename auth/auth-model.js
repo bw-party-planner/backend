@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
           res.status(401).json({ message: 'Invalid authorization'});
         } else {
           // token is good
-          req.user = user;
+          req.user = { username: decodedToken.user };
           next();
         }
       });

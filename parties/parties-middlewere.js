@@ -8,6 +8,8 @@ module.exports = {
     validateItemId,
     validateTodo,
     validateTaskId,
+    validatePicture,
+    validatePicId
 }
 
 function validateParty(req, res, next) {
@@ -88,6 +90,29 @@ function validateTaskId(req, res, next) {
         .then(task => {
             if(task){
                 req.task = task
+                next()
+            } else {
+                res.status(400).json({ message: 'Invalid item id' })
+            }
+        })
+        .catch(err =>{
+                res.status(500)
+                .json(err)
+            })
+  };
+  function validatePicture(req, res, next) {
+    if(!req.body) res.status(400).json({ message: "missing shopping list data" })
+    if(!req.body.url) res.status(400).json({ message: "missing required url field" })
+    if(!req.body.party_id) res.status(400).json({ message: "missing required party_id" })
+    next()
+};
+
+function validatePicId(req, res, next) {
+    const id = req.params.picId;
+    db.getPicById(Number(id))
+        .then(picture => {
+            if(picture){
+                req.picture = picture
                 next()
             } else {
                 res.status(400).json({ message: 'Invalid item id' })

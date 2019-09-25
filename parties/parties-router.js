@@ -8,6 +8,8 @@ const {
   validateItemId,
   validateTodo,
   validateTaskId,
+  validatePicture,
+  validatePicId
  } = require('./parties-middlewere.js')
 
 /* -------------- /api/parties------------*/
@@ -33,7 +35,7 @@ router.get('/', (req, res) => {
       res.status(500).json({ message: 'Failed to get party' });
     });
   });
-  
+
   router.post('/', validateParty, (req, res) => {
     const party = req.body;
     db.addParty(party)
@@ -238,5 +240,44 @@ router.get('/:id/pictures', (req, res) => {
     res.status(500).json({ message: 'Failed to get todo list' });
   });
 });
+router.get('/:id/pictures/:picId',  validatePicId,(req, res) => {
+  const  id  = req.params.picId;
 
+  db.getPicById(id)
+  .then(response => {
+   res.status(200).json(response)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'Failed to get pictures' });
+  });
+});
+
+
+router.post('/:id/pictures/',  validatePicture,(req, res) => {
+  
+  db.addPicture(req.body) 
+      .then(response => {
+          res.status(201).json({ message: 'Picture was created' })
+      })
+      .catch(error => {
+          console.log(error)
+          res.status(500)
+          .json(error.message)
+      })
+   
+});
+
+router.delete('/:id/pictures/:picId', validatePicId,(req, res) => {
+  const id = req.params.picId
+  db.deletePicture(id)
+  .then(response => {
+      res.status(200).json({message: 'the task was deleted.'})
+  })
+  .catch(err => {
+      console.log(err)
+      res.status(500)
+      .json({ errorMessage: 'The party could not be removed' })
+  })
+});
   module.exports = router;

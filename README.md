@@ -12,11 +12,13 @@
 **Categories**
 | Method | Endpoint             | Description                                                                                                                                                                                                                                                            |
 | ------ | -------------        | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET   | /api/categories        | |
-| POST   | /api/categories          | Require `category`  |
-| GET   | /api/categories/:id          | Require validated id  |
-| PUT   | /api/categories/:id          | Require validated id  |
-| DELETE   | /api/categories/:id          | Require validated id  |
+| GET   | /api/categories        | see example|
+| POST  | /api/categories        | Require `category`  |
+| GET   | /api/categories/:id    | Require validated id  |
+| PUT   | /api/categories/:id    | Require validated id  |
+| DELETE| /api/categories/:id    | Require validated id  |
+
+
 
 *Example /GET `/api/categories`*
 ```[

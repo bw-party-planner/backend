@@ -1,19 +1,15 @@
-const express = require('express');
- const db = require('./auth-model.js')
  const bcrypt = require('bcryptjs');
  const jwt = require('jsonwebtoken');
- 
  const Users = require('../users/users-model.js');
  const secrets = require('../config/secrets.js');
- 
  const router = express.Router();
  
  router.post('/register', (req, res) => {
    // implement registration
  
-   let user = req.body;
+  const user = req.body;
    const hash = bcrypt.hashSync(user.password, 10);
-   user.password = hash;
+    user.password = hash;
  
    Users.add(user)
      .then(saved => {
@@ -25,7 +21,7 @@ const express = require('express');
  });
  
  router.post('/login', (req, res) => {
-   let { username, password } = req.body;
+   const { username, password } = req.body;
  
    Users.findBy({ username })
      .first()

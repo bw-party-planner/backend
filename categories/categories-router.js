@@ -40,7 +40,7 @@ router.put('/:id', validateId,(req, res) => {
   const changes = req.body
   db.update(id, changes)
   .then(count => {
-    res.status(200).json({message: 'the party was updated.'})
+    res.status(200).json({message: 'the party was updated.'});
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to update category' });
@@ -52,7 +52,7 @@ router.delete('/:id', validateId,(req, res) => {
 
   db.remove(id)
   .then(count => {
-    res.status(200).json({message: 'the category was deleted.'})
+    res.status(200).json({message: 'the category was deleted.'});
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to delete category' });
@@ -66,20 +66,20 @@ function validateId(req, res, next) {
       .then(category => {
           if(category){
               req.category = category
-              next()
+              next();
           } else {
-              res.status(400).json({ message: 'Invalid category id' })
+              res.status(400).json({ message: 'Invalid category id' });
           }
       })
       .catch(() =>{
               res.status(500)
-              .json({ errorMessage: "error" })
-          })
-};
+              .json({ errorMessage: "error" });
+          });
+}
 
 function validateCategory(req, res, next) {
-  if(!req.body) res.status(400).json({ message: "missing category data" })
-  if(!req.body.category) res.status(400).json({ message: "missing required category field" })
-  next()
-};
+  if(!req.body) res.status(400).json({ message: "missing category data" });
+  if(!req.body.category) res.status(400).json({ message: "missing required category field" });
+  next();
+}
 module.exports = router;

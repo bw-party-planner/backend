@@ -46,9 +46,8 @@
 ```
 
 **Parties**
-| Method | Endpoint             | Description                                                                                                                                                                                                                                                            |
-| ------ | -------------        | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET   | /api/parties        |    see example                                                                                                                      |
+| Method | Endpoint             | Description                                                                                           |--------|----------------------|--------------------------------------------------------------------------------------|                                                                                                                                     
+| GET   | /api/parties        |    see example   |
 | POST   | /api/parties           | Require `party_name`, `guests`, `category_id`   |
 | GET   | /api/parties/:id           | Muse be validated id  |
 | PUT   | /api/parties/:id           | Muse be validated id  |
@@ -71,8 +70,8 @@
 
 
 **Party shopping List**
-| Method | Endpoint             | Description                                                                                                                                                                                                                                                            |
-| ------ | -------------        | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method | Endpoint             | Description |
+|--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/shoppingList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/shoppingList           | Muse be validated party id / Require `item`, `price`, `party_id` |
 | GET   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
@@ -101,8 +100,8 @@
 ```
 
 **Party Todo List**
-| Method | Endpoint             | Description                                                                                                                                                                                                                                                            |
-| ------ | -------------        | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method | Endpoint             | Description   |
+|--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/todoList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/todoList           | Muse be validated party id / Require `task`, `party_id` |
 | GET   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |

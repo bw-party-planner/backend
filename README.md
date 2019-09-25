@@ -2,7 +2,10 @@
 **Heroku App URL (need before each method url):`https://mypartyplanner.herokuapp.com`**
 
 **Register and Login**
-
+| Method | Endpoint             | Description 
+|--------|----------------------|--------------------------------------------------------------------------------------|
+| POST   | /api/auth/register        |    Require `username` , `password`  / must be < 255 characters /`username` must be unique                                                                                                                      |
+| POST   | /api/auth/login           | Require `username` , `password`  |
 
 
 

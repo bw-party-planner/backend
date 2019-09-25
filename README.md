@@ -6,12 +6,12 @@
 | Method | Endpoint             | Description 
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | POST   | /api/auth/register        |    Require `username` , `password`  / must be < 255 characters /`username` must be unique                                                                                                                      |
-| POST   | /api/auth/login           | Require `username` , `password` /  |
+| POST   | /api/auth/login           | Require `username` , `password`  |
 
 
 **Categories**
-| Method | Endpoint             | Description                                                                                                                                                                                                                                                            |
-| ------ | -------------        | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+| Method | Endpoint             | Description                                                                                           |--------|----------------------|--------------------------------------------------------------------------------------|                                                                                                                          
 | GET   | /api/categories        | see example|
 | POST  | /api/categories        | Require `category`  |
 | GET   | /api/categories/:id    | Muse be validated id  |

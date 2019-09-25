@@ -51,7 +51,8 @@
 **Parties**
 
 | Method | Endpoint             | Description 
-|--------|----------------------|--------------------------------------------------------------------------------------|                  | GET   | /api/parties        |    see example   |
+|--------|----------------------|--------------------------------------------------------------------------------------|               
+| GET   | /api/parties        |    see example   |
 | POST   | /api/parties           | Require `party_name`, `guests`, `category_id`   |
 | GET   | /api/parties/:id           | Muse be validated id  |
 | PUT   | /api/parties/:id           | Muse be validated id  |

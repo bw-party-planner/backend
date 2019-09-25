@@ -6,7 +6,7 @@ const db = require('./users-model.js');
 
 router.post("/", restricted, async (req, res) => {
   try {
-    const user = await db_users.insert(req.body);
+    const user = await db.insert(req.body);
     res.status(201).json(user);
   } catch (err) {
     res.status(500).json({

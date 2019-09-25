@@ -8,9 +8,9 @@
 - [ ] deploy Heroku
 ## Endpoint
 - [x] `api/parties` /GET /POST /PUT /DELETE 
-- [ ] `api/parties/:id`    /GET (getById)
-- [ ] `api/parties/:id/shoppingList`  /GET /POST
-- [ ] `api/parties/:id/shoppingList/:id`  /PUT /DELETE
+- [x] `api/parties/:id`    /GET (getById)
+- [x] `api/parties/:id/shoppingList`  /GET /POST
+- [x] `api/parties/:id/shoppingList/:id`  /PUT /DELETE
 - [ ] `api/parties/:id/todoList` /GET /POST
 - [ ] `api/parties/:id/todoList/:id` /PUT /DELETE 
 - [ ] `api/parties/:id/pictures` /GET /POST

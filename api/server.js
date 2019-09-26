@@ -30,7 +30,7 @@ server.use('/api/todoLists', todoListsRouter);
 
 
 server.get('/', (req, res) => {
-    res.send(`<h2>Check out backend's README</h2>`)
+    res.send(`<h2>Check out API documentation at https://github.com/bw-party-planner/backend</h2>`)
   });
 
 module.exports = server;

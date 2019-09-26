@@ -14,6 +14,7 @@ function validateParty(req, res, next) {
     if(!req.body) res.status(400).json({ message: "missing party data" })
     if(!req.body.party_name) res.status(400).json({ message: "missing required party's name field" })
     if(!req.body.guests) res.status(400).json({ message: "missing required guests field" })
+    if(!req.body.category_id) res.status(400).json({ message: "missing required category_id " })
     next()
   };
   

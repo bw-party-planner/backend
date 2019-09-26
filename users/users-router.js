@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const restricted = require('../auth/restricted-middleware.js');
+const restricted = require('../auth/auth-model.js');
+const Users = require('./users-model.js');
 const db = require('./users-model.js');
 
 

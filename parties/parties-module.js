@@ -73,7 +73,7 @@ module.exports = {
 
   function addShopingList(list) {
     return db('shopping_lists')
-      .insert(list)
+      .insert(list, 'id')
       .then(ids => {
         return getShopingListById(ids[0]);
       })
@@ -113,7 +113,7 @@ module.exports = {
   }
   function addTodoList(list) {
     return db('todo_lists')
-      .insert(list)
+      .insert(list, 'id')
       .then(ids => {
         return getTodoListById(ids[0]);
       })
@@ -150,7 +150,7 @@ module.exports = {
   }
   function addPicture(list) {
     return db('pictures')
-      .insert(list)
+      .insert(list, 'id')
       .then(ids => {
         return getPicturestById(ids[0]);
       })

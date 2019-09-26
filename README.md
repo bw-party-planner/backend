@@ -134,6 +134,25 @@
 ```
 
 
-**Still working on picture endpoints**
+**Party Pictures**
 
+| Method | Endpoint             | Description 
+|--------|----------------------|--------------------------------------------------------------------------------------|
+| GET   | /api/parties/:id/pictures           | Muse be validated party id / see example |
+| POST   | /api/parties/:id/pictures          | Muse be validated party id / Require `url`,`party_id` |
+| GET   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
+| DELETE   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
 
+**Example GET /api/pictures**
+```
+[
+  {
+    "id": 1,
+    "url": "https://i.ibb.co/pyzv4Tc/birthday-cake.jpg"
+  },
+  {
+    "id": 2,
+    "url": "https://images.unsplash.com/photo-1531956531700-dc0ee0f1f9a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+  }
+]
+```

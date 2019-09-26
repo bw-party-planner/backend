@@ -143,7 +143,7 @@
 | GET   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
 | DELETE   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
 
-**Example GET /api/pictures**
+**Example GET /api/parties/:id/pictures**
 ```
 [
   {

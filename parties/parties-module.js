@@ -35,7 +35,7 @@ module.exports = {
 
   function addParty(party) {
     return db('parties')
-      .insert(party)
+      .insert(party, 'id')
       .then(ids => {
         return getPartyById(ids[0]);
       })

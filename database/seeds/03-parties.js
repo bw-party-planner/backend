@@ -5,7 +5,7 @@ exports.seed = function(knex) {
        guests: 15, 
        theme: "Princess", 
        date: "10/10/2019", 
-       budget: "$500",
+       budget: 500,
        category_id: 1
       } 
     ]);

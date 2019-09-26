@@ -17,9 +17,9 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('party_name').notNullable();
     tbl.string('guests').notNullable();
-    tbl.integer('theme')
-    tbl.date('date')
-    tbl.string('budget')
+    tbl.string('theme')
+    tbl.string('date')
+    tbl.integer('budget')
     tbl
         .integer('category_id')
         .unsigned()
@@ -42,7 +42,7 @@ exports.up = function(knex) {
   .createTable('shopping_lists', tbl => {
     tbl.increments();
     tbl.string('item').notNullable();
-    tbl.string('price').notNullable();
+    tbl.integer('price').notNullable();
     tbl
         .integer('party_id')
         .unsigned()

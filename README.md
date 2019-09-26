@@ -17,7 +17,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|           
 | GET   | /api/categories        | see example|
 | POST  | /api/categories        | Require `category`  |
-| GET   | /api/categories/:id    | Muse be validated id  |
 | PUT   | /api/categories/:id    | Muse be validated id  |
 | DELETE| /api/categories/:id    | Muse be validated id  |
 
@@ -54,7 +53,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|               
 | GET   | /api/parties        |    see example   |
 | POST   | /api/parties           | Require `party_name`, `guests`, `category_id`   |
-| GET   | /api/parties/:id           | Muse be validated id  |
 | PUT   | /api/parties/:id           | Muse be validated id  |
 | DELETE| /api/parties/:id           | Muse be validated id  |
 
@@ -80,7 +78,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/shoppingList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/shoppingList           | Muse be validated party id / Require `item`, `price`, `party_id` |
-| GET   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
 | PUT   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
 | DELETE   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
 
@@ -111,7 +108,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/todoList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/todoList           | Muse be validated party id / Require `task`, `party_id` |
-| GET   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |
 | PUT   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |
 | DELETE   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |
 
@@ -140,7 +136,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/pictures           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/pictures          | Muse be validated party id / Require `url`,`party_id` |
-| GET   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
 | DELETE   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
 
 **Example GET /api/parties/:id/pictures**

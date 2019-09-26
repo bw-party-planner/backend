@@ -18,7 +18,11 @@ module.exports = {
     deleteTask,
     getTodoListById,
     addTodoList,
-    getPictures
+    getPictures,
+    getPicById,
+    updatePic,
+    addPicture,
+    deletePicture,
   };
 
   function getParties() {
@@ -31,7 +35,7 @@ module.exports = {
 
   function addParty(party) {
     return db('parties')
-      .insert(party)
+      .insert(party, 'id')
       .then(ids => {
         return getPartyById(ids[0]);
       })
@@ -69,7 +73,7 @@ module.exports = {
 
   function addShopingList(list) {
     return db('shopping_lists')
-      .insert(list)
+      .insert(list, 'id')
       .then(ids => {
         return getShopingListById(ids[0]);
       })
@@ -109,7 +113,7 @@ module.exports = {
   }
   function addTodoList(list) {
     return db('todo_lists')
-      .insert(list)
+      .insert(list, 'id')
       .then(ids => {
         return getTodoListById(ids[0]);
       })
@@ -125,6 +129,35 @@ module.exports = {
   function getPictures(party_id) {
     return db('parties as P')
     .join('pictures as PT', 'P.id', 'PT.party_id')
-    .select('PT.url')
+    .select('PT.id','PT.url')
     .where('PT.party_id', party_id)
+  }
+
+
+  function getPicById(id) {
+    return db('pictures').where({ id }).first();
+  }
+  function updatePic(id, changes) {
+    return db('pictures')
+      .where({ id })
+      .update(changes);
+  }
+  function getPicturestById(id) {
+    return db('pictures as PT')
+      .join('parties as P', 'PT.id', 'P.id' )
+      .select('PT.id','PT.url')
+      .where({'PT.id': id}).first();
+  }
+  function addPicture(list) {
+    return db('pictures')
+      .insert(list, 'id')
+      .then(ids => {
+        return getPicturestById(ids[0]);
+      })
+  }
+
+  function deletePicture(id) {
+    return db('pictures')
+      .where('id', id)
+      .del();
   }

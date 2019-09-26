@@ -1,39 +1,3 @@
-<<<<<<< HEAD
-# backend
-
-## Ann
-- [ ] Testing at the end
-- [x] set up sever and foulders
-- [x] migrations
-- [x] seeds
-- [ ] deploy Heroku
-## Endpoint
-- [x] `api/parties` /GET /POST /PUT /DELETE 
-- [x] `api/parties/:id`    /GET (getById)
-- [x] `api/parties/:id/shoppingList`  /GET /POST
-- [x] `api/parties/:id/shoppingList/:id`  /PUT /DELETE
-- [ ] `api/parties/:id/todoList` /GET /POST
-- [ ] `api/parties/:id/todoList/:id` /PUT /DELETE 
-- [ ] `api/parties/:id/pictures` /GET /POST
-- [ ] `api/parties/:id/pictures/:id` /PUT /DELETE
-
-
-
-
-## Marques 
-- [ ] Testing at the end
-## Endpoint
-- [x] `api/auth/login`   /POST
-- [x] `api/auth/register` /POST
-- [ ] `api/users` /GET /POST/ /PUT /DELETE ==> restricted 
-- [x] `api/users/:id` /GET
-- [x] `api/categories`  /GET /POST /PUT /DELETE 
-- [x] `api/categories/:id`  /GET (getById) 
-- [x] `api/todosList` /GET 
-- [x] `api/shoppinglists`  /GET 
-- [x] `api/pictures` /GET  
-=======
->>>>>>> 4bb8fff471197e39d163cbe4dd5f262727ee8766
 
 **Heroku App URL (need before each method url):`https://mypartyplanner.herokuapp.com`**
 
@@ -53,7 +17,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|           
 | GET   | /api/categories        | see example|
 | POST  | /api/categories        | Require `category`  |
-| GET   | /api/categories/:id    | Muse be validated id  |
 | PUT   | /api/categories/:id    | Muse be validated id  |
 | DELETE| /api/categories/:id    | Muse be validated id  |
 
@@ -90,7 +53,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|               
 | GET   | /api/parties        |    see example   |
 | POST   | /api/parties           | Require `party_name`, `guests`, `category_id`   |
-| GET   | /api/parties/:id           | Muse be validated id  |
 | PUT   | /api/parties/:id           | Muse be validated id  |
 | DELETE| /api/parties/:id           | Muse be validated id  |
 
@@ -116,7 +78,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/shoppingList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/shoppingList           | Muse be validated party id / Require `item`, `price`, `party_id` |
-| GET   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
 | PUT   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
 | DELETE   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
 
@@ -147,7 +108,6 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|
 | GET   | /api/parties/:id/todoList           | Muse be validated party id / see example |
 | POST   | /api/parties/:id/todoList           | Muse be validated party id / Require `task`, `party_id` |
-| GET   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |
 | PUT   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |
 | DELETE   | /api/parties/:id/todoList/:taskId           | Muse be validated party id / Muse be validated task id |
 
@@ -170,6 +130,24 @@
 ```
 
 
-**Still working on picture endpoints**
+**Party Pictures**
 
+| Method | Endpoint             | Description 
+|--------|----------------------|--------------------------------------------------------------------------------------|
+| GET   | /api/parties/:id/pictures           | Muse be validated party id / see example |
+| POST   | /api/parties/:id/pictures          | Muse be validated party id / Require `url`,`party_id` |
+| DELETE   | /api/parties/:id/pictures/:picId           | Muse be validated party id / Muse be validated url id |
 
+**Example GET /api/parties/:id/pictures**
+```
+[
+  {
+    "id": 1,
+    "url": "https://i.ibb.co/pyzv4Tc/birthday-cake.jpg"
+  },
+  {
+    "id": 2,
+    "url": "https://images.unsplash.com/photo-1531956531700-dc0ee0f1f9a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+  }
+]
+```

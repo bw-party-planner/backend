@@ -24,13 +24,13 @@ server.use('/api/parties', authenticate, partiesRouter);
 server.use('/api/users', authenticate, users);
 
 // stretch goal
-server.use('/api/pictures', authenticate,picturesRouter);
+server.use('/api/pictures', authenticate, picturesRouter);
 server.use('/api/shoppingLists', authenticate, shoppingListsRouter);
 server.use('/api/todoLists', authenticate, todoListsRouter);
 
 
 server.get('/', (req, res) => {
-    res.send(`<h2>Check out backend's README</h2>`)
+    res.send(`<h2>Check out API documentation at https://github.com/bw-party-planner/backend</h2>`)
   });
 
 module.exports = server;

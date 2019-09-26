@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
         }
       });
   } else {
-    res.status(401).json({ you: 'Please try again'});
+    res.status(401).json({  message:'Not authenticated. Please provide a valid token in the request header. (see documentation)'});
   };
   };
+

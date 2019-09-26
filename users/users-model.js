@@ -17,12 +17,10 @@ function findBy(filter) {
   return db('users').where(filter);
 }
 
-function insert(user) {
-  return db('users')
-    .insert(user)
-    .then(ids => {
-      return getById(ids[0]);
-    });
+async function add(user) {
+  const [id] = await db('users').insert(user, 'id');
+
+  return findById(id);
 }
 
 function update(id, changes) {

@@ -8,6 +8,7 @@ module.exports = {
   insert,
   update,
   remove,
+  getPartyByCategoryId,
 };
 
 function get() {
@@ -38,4 +39,11 @@ function remove(id) {
   return db('categories')
     .where('id', id)
     .del();
+}
+
+function getPartyByCategoryId(category_id) {
+  return db('categories as C')
+    .join('parties as P', 'C.id', 'P.category_id')
+    .select('P.id', 'P.party_name', 'C.category', 'P.category_id')
+    .where('P.category_id', category_id)
 }

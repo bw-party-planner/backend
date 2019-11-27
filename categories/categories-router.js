@@ -59,6 +59,21 @@ router.delete('/:id', validateId,(req, res) => {
   });
 });
 
+router.get('/:id/party', (req, res) => {
+  const { id } = req.params;
+
+  db.getPartyByCategoryId(id)
+  .then(response => {
+    if (response.length) {
+      res.json(response);
+    } else {
+      res.status(404).json({ message: 'No parties on this categoty ID' });
+    }
+  })
+  .catch(err => {
+    res.status(500).json({ message: 'Failed to get category' });
+  });
+});
 
 function validateId(req, res, next) {
   const id = req.params.id;
@@ -82,4 +97,21 @@ function validateCategory(req, res, next) {
   if(!req.body.category) res.status(400).json({ message: "missing required category field" });
   next();
 }
+
+function validateCategoryId(req, res, next) {
+  const id = req.params.id;
+  db.getPartyByCategoryId(Number(id))
+      .then(category => {
+          if(category){
+              req.category = category
+              next()
+          } else {
+              res.status(400).json({ message: 'Invalid party id' })
+          }
+      })
+      .catch(() =>{
+              res.status(500)
+              .json({ errorMessage: "error" })
+          })
+};
 module.exports = router;

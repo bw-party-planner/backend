@@ -19,6 +19,7 @@
 | POST  | /api/categories        | Require `category`  |
 | PUT   | /api/categories/:id    | Muse be validated id  |
 | DELETE| /api/categories/:id    | Muse be validated id  |
+| GET   | /api/categories/:id/party    | Muse be validated id  |
 
 
 

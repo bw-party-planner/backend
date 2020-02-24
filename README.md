@@ -152,3 +152,22 @@
   }
 ]
 ```
+
+
+
+## Raw SQL
+
+```sql
+INSERT INTO parties (party_name, guests, shopping_lists_id) VALUES ("Anns Birthday", 200, 1);
+
+
+SELECT * FROM shopping_lists;
+
+
+INSERT INTO shopping_lists (id) VALUES (1);
+
+INSERT INTO shopping_list_items (item, price, shopping_list_id)
+VALUES ("Pizza", 20, 1);
+
+DELETE FROM shopping_list_items;
+```

@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const db = require('./parties-module.js')
-const { 
+const {
   validateParty,
   validatePartyId,
   validateShopping,
   validateItemId,
   validateTodo,
   validateTaskId,
-  validatePicture,
-  validatePicId
- } = require('./parties-middlewere.js')
+} = require('./parties-middlewere.js')
 
 /* -------------- /api/parties------------*/
 router.get('/', (req, res) => {
@@ -20,264 +18,221 @@ router.get('/', (req, res) => {
     })
     .catch(error => {
       console.log(error)
-      res.status(500).json({errorMessage: 'The party information could not be retrieved'});
+      res.status(500).json({ errorMessage: 'The party information could not be retrieved' });
     });
-  });
+});
 
-  router.get('/:id', validatePartyId, (req, res) => {
-    const { id } = req.params;
-  
-    db.getPartyById(id)
+router.get('/:id', validatePartyId, (req, res) => {
+  const { id } = req.params;
+
+  db.getPartyById(id)
     .then(party => {
-     res.status(200).json(party)
+      res.status(200).json(party)
     })
     .catch(err => {
       res.status(500).json({ message: 'Failed to get party' });
     });
-  });
-
-  router.post('/', validateParty, (req, res) => {
-    const party = req.body;
-    db.addParty(party)
-        .then(response => {
-            res.status(201).json(response);
-        })
-        .catch(error => {
-            console.log(error);
-            res.status(500)
-            .json({errorMessage: 'There was an error while saving the party to the database'});
-        });
 });
 
+router.post('/', validateParty, async (req, res) => {
+  const party = req.body;
+  const shopping_lists_id = await db.addShopingList()
+  const todo_lists_id = await db.addTodoList()
+  party.shopping_lists_id = `${shopping_lists_id}`
+  party.todo_lists_id = `${todo_lists_id}`
+
+  db.addParty(party)
+    .then(response => {
+      res.status(201).json(response);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500)
+      console.log(error)
+        .json({ errorMessage: 'There was an error while saving the party to the database' });
+    });
+});
 router.delete('/:id', validatePartyId, (req, res) => {
   const id = req.params.id
   db.deleteParty(id)
-  .then(response => {
-      res.status(200).json({message: 'the party was deleted.'});
-  })
-  .catch(() => {
+    .then(response => {
+      res.status(200).json({ message: 'The party was deleted.' });
+    })
+    .catch(() => {
       res
-      .status(500)
-      .json({ errorMessage: 'The party could not be removed' });
-  });
+        .status(500)
+        .json({ errorMessage: 'The party could not be removed' });
+    });
 });
 
 router.put('/:id', validatePartyId, (req, res) => {
   const party = req.body;
   const id = req.params.id
-      db.updateParty(id,  party)
-      .then(respones => {
-          res.status(200).json({message: 'the party was updated.'});
-      })
-      .catch(error => {
-          console.log(error)
-          res.status(500)
-          .json({errorMessage: 'The party information could not be modified.' });
-      });
+  db.updateParty(id, party)
+    .then(respones => {
+      res.status(200).json({ message: 'the party was updated.' });
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500)
+        .json({ errorMessage: 'The party information could not be modified.' });
+    });
 });
 
+/* -------------- /api/parties/shopping-list------------*/
 
-/* -------------- /api/parties/:id/shoppingList------------*/
- 
-router.get('/:id/shoppingList', (req, res) => {
-  const { id } = req.params;
-  db.getShopingList(id)
-  .then(response => {
-    if (response.length) {
-      res.json(response);
-    } else {
-      res.status(404).json({ message: 'Could not find ID' });
-    }
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ message: 'Failed to get shopping list' });
-  });
+router.post('/shopping-item/new', validateShopping,(req, res) => {
+  const item = req.body;
+  db.addItemToShoppingList(item)
+    .then(response => {
+      res.status(201).json(response);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500)
+        .json({ errorMessage: 'There was an error while saving the party to the database' });
+    });
 });
 
-router.get('/:id/shoppingList/:itemId', validateItemId,(req, res) => {
-  const  id  = req.params.itemId;
+router.get('/shopping-list/:id/items', (req, res) => {
+  const id = req.params.id
+  db.getShoppingListItemsByShoppingListId(id)
+    .then(response => {
+      res.status(201).json(response);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500)
+        .json({ errorMessage: '???' });
+    });
+});
+
+router.get('/shopping-list/:itemId', validateItemId, (req, res) => {
+  const id = req.params.itemId;
 
   db.getItemById(id)
-  .then(item => {
-   res.status(200).json(item)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ message: 'Failed to get item' });
-  });
+    .then(item => {
+      res.status(200).json(item)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Failed to get item' });
+    });
 });
 
-
-router.post('/:id/shoppingList',  validateShopping,(req, res) => {
-  
-  db.addShopingList(req.body) 
-      .then(response => {
-          res.status(201).json({ message: 'Shopping list was created' })
-      })
-      .catch(error => {
-          console.log(error)
-          res.status(500)
-          .json(error.message)
-      })
-});
-router.put('/:id/shoppingList/:itemId', validateItemId, (req, res) => {
+router.put('/shopping-list/:itemId', validateItemId, (req, res) => {
   const changes = req.body;
   const id = req.params.itemId
-      db.updateItem(id,  changes)
-      .then(respones => {
-          res.status(200).json({message: 'the item was updated.'})
-      })
-      .catch(error => {
-          console.log(error)
-          res.status(500)
-          .json({errorMessage: 'The item information could not be modified.' })
-      })
+  db.updateItem(id, changes)
+    .then(respones => {
+      res.status(200).json({ message: 'The item was updated.' })
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500)
+        .json({ errorMessage: 'The item information could not be modified.' })
+    })
 })
-router.delete('/:id/shoppingList/:itemId', validateItemId,(req, res) => {
+
+router.delete('/shopping-list/:itemId', validateItemId, (req, res) => {
   const id = req.params.itemId
 
   db.deleteItem(id)
-  .then(response => {
-      res.status(200).json({message: 'the item was deleted.'})
-  })
-  .catch(err => {
+    .then(response => {
+      res.status(200).json({ message: 'The item was deleted.' })
+    })
+    .catch(err => {
       console.log(err)
       res.status(500)
-      .json({ errorMessage: 'The party could not be removed' })
-  })
+        .json({ errorMessage: 'The party could not be removed' })
+    })
 });
 
 
-/* -------------- /api/parties/:id/todoList------------*/
+/*-----------------todo----------------------------------------*/ 
 
-
-router.get('/:id/todoList', (req, res) => {
-  const { id } = req.params;
-  db.getTodoList(id)
-  .then(response => {
-    if (response.length) {
-      res.json(response);
-    } else {
-      res.status(404).json({ message: 'Could not find ID' });
-    }
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ message: 'Failed to get todo list' });
-  });
+router.post('/todo-task/new', validateTodo,(req, res) => {
+  const item = req.body;
+  db.addTask(item)
+    .then(response => {
+      res.status(201).json(response);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500)
+        .json({ errorMessage: 'There was an error while saving the task to the database' });
+    });
 });
 
-
-router.get('/:id/todoList/:taskId',  validateTaskId,(req, res) => {
-  const  id  = req.params.taskId;
+router.get('/task/:taskId', validateTaskId, (req, res) => {
+  const id = req.params.taskId;
 
   db.getTaskById(id)
-  .then(todo => {
-   res.status(200).json(todo)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ message: 'Failed to get todo list' });
-  });
+    .then(todo => {
+      res.status(200).json(todo)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Failed to get todo list' });
+    });
 });
 
 
-router.post('/:id/todoList',  validateTodo,(req, res) => {
-  
-  db.addTodoList(req.body) 
-      .then(response => {
-          res.status(201).json({ message: 'Task was created' })
-      })
-      .catch(error => {
-          console.log(error)
-          res.status(500)
-          .json(error.message)
-      })
-   
-});
-router.put('/:id/todoList/:taskId', validateTaskId, (req, res) => {
+router.put('/task/:taskId', validateTaskId, (req, res) => {
   const changes = req.body;
   const id = req.params.taskId
-      db.updateTask(id,  changes)
-      .then(respones => {
-          res.status(200).json({message: 'the task was updated.'})
-      })
-      .catch(error => {
-          console.log(error)
-          res.status(500)
-          .json({errorMessage: 'The task information could not be modified.' })
-      })
+  db.updateTask(id, changes)
+    .then(respones => {
+      res.status(200).json({ message: 'The task was updated.' })
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500)
+        .json({ errorMessage: 'The task information could not be modified.' })
+    })
 })
-router.delete('/:id/todoList/:taskId', validateTaskId,(req, res) => {
+router.delete('/task/:taskId', validateTaskId, (req, res) => {
   const id = req.params.taskId
   db.deleteTask(id)
-  .then(response => {
-      res.status(200).json({message: 'the task was deleted.'})
-  })
-  .catch(err => {
+    .then(response => {
+      res.status(200).json({ message: 'The task was deleted.' })
+    })
+    .catch(err => {
       console.log(err)
       res.status(500)
-      .json({ errorMessage: 'The party could not be removed' })
-  })
-});
-
-/* -------------- /api/parties/:id/pictures------------*/
-
-
-router.get('/:id/pictures', (req, res) => {
-  const { id } = req.params;
-  db.getPictures(id)
-  .then(response => {
-    if (response.length) {
-      res.json(response);
-    } else {
-      res.status(404).json({ message: 'Could not find ID' });
-    }
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ message: 'Failed to get todo list' });
-  });
-});
-router.get('/:id/pictures/:picId',  validatePicId,(req, res) => {
-  const  id  = req.params.picId;
-
-  db.getPicById(id)
-  .then(response => {
-   res.status(200).json(response)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({ message: 'Failed to get pictures' });
-  });
+        .json({ errorMessage: 'The party could not be removed' })
+    })
 });
 
 
-router.post('/:id/pictures/',  validatePicture,(req, res) => {
-  
-  db.addPicture(req.body) 
-      .then(response => {
-          res.status(201).json({ message: 'Picture was created' })
-      })
-      .catch(error => {
-          console.log(error)
-          res.status(500)
-          .json(error.message)
-      })
-   
-});
-
-router.delete('/:id/pictures/:picId', validatePicId,(req, res) => {
-  const id = req.params.picId
-  db.deletePicture(id)
-  .then(response => {
-      res.status(200).json({message: 'the task was deleted.'})
-  })
-  .catch(err => {
-      console.log(err)
+// for debug
+router.get('/shopping-list/items', (req, res) => {
+  db.getShoppingListItems()
+    .then(response => {
+      res.status(201).json(response);
+    })
+    .catch(error => {
+      console.log(error);
       res.status(500)
-      .json({ errorMessage: 'The party could not be removed' })
-  })
+        .json({ errorMessage: '???' });
+    });
 });
-  module.exports = router;
+
+/// for debug
+router.post('/shopping-list/new', (req, res) => {
+  db.addShopingList()
+    .then(response => {
+      res.status(201).json(response);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500)
+        .json({ errorMessage: 'There was an error while saving the party to the database' });
+    });
+});
+
+
+
+
+
+module.exports = router;

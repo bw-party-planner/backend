@@ -9,10 +9,6 @@ exports.up = function(knex) {
       .unique();
     users.string('password', 255).notNullable();
   })
-  .createTable('categories', tbl => {
-    tbl.increments();
-    tbl.string('category').notNullable();
-  })
   .createTable('parties', tbl => {
     tbl.increments();
     tbl.string('party_name').notNullable();
@@ -21,55 +17,61 @@ exports.up = function(knex) {
     tbl.string('date')
     tbl.integer('budget')
     tbl
-        .integer('category_id')
-        .unsigned()
-        .references('id')
-        .inTable('categories')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
-  })
-  .createTable('pictures', tbl => {
-    tbl.increments();
-    tbl.string('url').notNullable();
+      .integer('shopping_lists_id')
+      .unsigned()
+      .references('id')
+      .inTable('shopping_lists')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
     tbl
-        .integer('party_id')
-        .unsigned()
-        .references('id')
-        .inTable('parties')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
+      .integer('todo_lists_id')
+      .unsigned()
+      .references('id')
+      .inTable('todo_lists')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
   })
+  
+
   .createTable('shopping_lists', tbl => {
+    tbl.increments();
+  })
+  .createTable('shopping_list_items', tbl => {
     tbl.increments();
     tbl.string('item').notNullable();
     tbl.integer('price').notNullable();
     tbl
-        .integer('party_id')
-        .unsigned()
-        .references('id')
-        .inTable('parties')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
+      .integer('shopping_list_id')
+      .unsigned()
+      .references('id')
+      .inTable('shopping_lists')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
   })
+
+
   .createTable('todo_lists', tbl => {
     tbl.increments();
-    tbl.string('task').notNullable();
+  })
+  .createTable('todo_task', tbl => {
+    tbl.increments();
+    tbl.string('task').notNullable()
     tbl
-        .integer('party_id')
-        .unsigned()
-        .references('id')
-        .inTable('parties')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
+      .integer('todo_lists_id')
+      .unsigned()
+      .references('id')
+      .inTable('todo_lists')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
   })
 };
 
 exports.down = function(knex) {
     return knex.schema
+    .dropTableIfExists('todo_task')
     .dropTableIfExists('todo_lists')
+    .dropTableIfExists('shopping_list_items')
     .dropTableIfExists('shopping_lists')
-    .dropTableIfExists('pictures')
     .dropTableIfExists('parties')
-    .dropTableIfExists('categories')
     .dropTableIfExists('users');
 };

@@ -8,15 +8,12 @@ module.exports = {
     validateItemId,
     validateTodo,
     validateTaskId,
-    validatePicture,
-    validatePicId
 }
 
 function validateParty(req, res, next) {
     if(!req.body) res.status(400).json({ message: "missing party data" })
     if(!req.body.party_name) res.status(400).json({ message: "missing required party's name field" })
-    if(!req.body.guests) res.status(400).json({ message: "missing required guests field" })
-    if(!req.body.category_id) res.status(400).json({ message: "missing required category_id " })
+    if(!req.body.hasOwnProperty('guests')) res.status(400).json({ message: "missing required guests field" })
     next()
   };
   
@@ -40,8 +37,8 @@ function validatePartyId(req, res, next) {
 function validateShopping(req, res, next) {
     if(!req.body) res.status(400).json({ message: "missing shopping list data" })
     if(!req.body.item) res.status(400).json({ message: "missing required item field" })
-    if(!req.body.price) res.status(400).json({ message: "missing required price field" })
-    if(!req.body.party_id) res.status(400).json({ message: "missing required party_id" })
+    if(!req.body.hasOwnProperty('price')) res.status(400).json({ message: "missing required price field" })
+    if(!req.body.shopping_list_id) res.status(400).json({ message: "missing required shopping list id field" })
     next()
 };
 
@@ -80,7 +77,7 @@ function validateShoppingId(req, res, next) {
 function validateTodo(req, res, next) {
     if(!req.body) res.status(400).json({ message: "missing shopping list data" })
     if(!req.body.task) res.status(400).json({ message: "missing required task field" })
-    if(!req.body.party_id) res.status(400).json({ message: "missing required party_id" })
+    if(!req.body.todo_lists_id) res.status(400).json({ message: "missing required todo lists id field" })
     next()
 };
 
@@ -90,29 +87,6 @@ function validateTaskId(req, res, next) {
         .then(task => {
             if(task){
                 req.task = task
-                next()
-            } else {
-                res.status(400).json({ message: 'Invalid item id' })
-            }
-        })
-        .catch(err =>{
-                res.status(500)
-                .json(err)
-            })
-  };
-  function validatePicture(req, res, next) {
-    if(!req.body) res.status(400).json({ message: "missing shopping list data" })
-    if(!req.body.url) res.status(400).json({ message: "missing required url field" })
-    if(!req.body.party_id) res.status(400).json({ message: "missing required party_id" })
-    next()
-};
-
-function validatePicId(req, res, next) {
-    const id = req.params.picId;
-    db.getPicById(Number(id))
-        .then(picture => {
-            if(picture){
-                req.picture = picture
                 next()
             } else {
                 res.status(400).json({ message: 'Invalid item id' })

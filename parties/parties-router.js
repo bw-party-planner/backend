@@ -90,7 +90,7 @@ router.post('/shopping-item/new', validateShopping,(req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500)
-        .json({ errorMessage: 'There was an error while saving the party to the database' });
+        .json({ errorMessage: 'There was an error while saving the item to the database' });
     });
 });
 

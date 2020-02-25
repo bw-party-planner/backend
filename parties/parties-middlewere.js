@@ -38,7 +38,7 @@ function validateShopping(req, res, next) {
     if(!req.body) res.status(400).json({ message: "missing shopping list data" })
     if(!req.body.item) res.status(400).json({ message: "missing required item field" })
     if(!req.body.hasOwnProperty('price')) res.status(400).json({ message: "missing required price field" })
-    if(!req.body.shopping_list_id) res.status(400).json({ message: "missing required shopping list id field" })
+    if(!req.body.shopping_list_id) res.status(400).json({ message: "missing required shopping_list_id field" })
     next()
 };
 

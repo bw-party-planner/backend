@@ -35,7 +35,6 @@ async function getPartyById(id) {
   }
   const todo_lists_id = party.todo_lists_id
   if (todo_lists_id) {
-    console.log('test')
     const todo_list = await db('todo_task')
     .where({todo_lists_id: todo_lists_id}) //query
     party['todo_list'] = todo_list

@@ -85,7 +85,8 @@ router.post('/shopping-item/new', validateShopping,(req, res) => {
   const item = req.body;
   db.addItemToShoppingList(item)
     .then(response => {
-      res.status(201).json(response);
+      resPurchased = response.purchased === 0 ? {...response, purchased: false}: {...response, purchased: true}
+      res.status(201).json(resPurchased);
     })
     .catch(error => {
       console.log(error);
@@ -155,7 +156,8 @@ router.post('/todo-task/new', validateTodo,(req, res) => {
   const item = req.body;
   db.addTask(item)
     .then(response => {
-      res.status(201).json(response);
+      resCompleted = response.completed === 0 ? {...response, completed: false} :{...response, completed: true}
+      res.status(201).json(resCompleted);
     })
     .catch(error => {
       console.log(error);

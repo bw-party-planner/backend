@@ -40,6 +40,7 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('item').notNullable();
     tbl.integer('price').notNullable();
+    tbl.boolean('purchased').defaultTo(false)
     tbl
       .integer('shopping_list_id')
       .unsigned()
@@ -56,6 +57,7 @@ exports.up = function(knex) {
   .createTable('todo_task', tbl => {
     tbl.increments();
     tbl.string('task').notNullable()
+    tbl.boolean('completed').defaultTo(false)
     tbl
       .integer('todo_lists_id')
       .unsigned()

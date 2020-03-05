@@ -49,14 +49,11 @@ router.get('/:id', validatePartyId, (req, res) => {
 });
 
 router.post('/', validateParty, async (req, res) => {
-  // const { id  } = req.body;
   const party = req.body;
   const shopping_lists_id = await db.addShopingList()
   const todo_lists_id = await db.addTodoList()
-  // const user_id = await User.findBy({ id })
   party.shopping_lists_id = `${shopping_lists_id}`
   party.todo_lists_id = `${todo_lists_id}`
-  // party.user_id = `${user_id}`
   db.addParty(party)
     .then(response => {
       res.status(201).json(response);
@@ -101,8 +98,7 @@ router.post('/shopping-item/new', validateShopping,(req, res) => {
   const item = req.body;
   db.addItemToShoppingList(item)
     .then(response => {
-      resPurchased = response.purchased === 0 ? {...response, purchased: false}: {...response, purchased: true}
-      res.status(201).json(resPurchased);
+      res.status(201).json(response);
     })
     .catch(error => {
       console.log(error);
@@ -173,7 +169,7 @@ router.post('/todo-task/new', validateTodo,(req, res) => {
   db.addTask(item)
     .then(response => {
       resCompleted = response.completed === 0 ? {...response, completed: false} :{...response, completed: true}
-      res.status(201).json(resCompleted);
+      res.status(201).json(response);
     })
     .catch(error => {
       console.log(error);

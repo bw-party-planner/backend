@@ -168,7 +168,6 @@ router.post('/todo-task/new', validateTodo,(req, res) => {
   const item = req.body;
   db.addTask(item)
     .then(response => {
-      resCompleted = response.completed === 0 ? {...response, completed: false} :{...response, completed: true}
       res.status(201).json(response);
     })
     .catch(error => {

@@ -9,6 +9,12 @@ exports.up = function(knex) {
       .unique();
     users.string("password", 255).notNullable();
   })
+  .createTable("shopping_lists", tbl => {
+    tbl.increments();
+  })
+  .createTable("todo_lists", tbl => {
+    tbl.increments();
+  })
   .createTable("parties", tbl => {
     tbl.increments();
     tbl.string("party_name").notNullable();
@@ -39,11 +45,6 @@ exports.up = function(knex) {
       .onUpdate("CASCADE")
       .notNullable();
   })
-  
-
-  .createTable("shopping_lists", tbl => {
-    tbl.increments();
-  })
   .createTable("shopping_list_items", tbl => {
     tbl.increments();
     tbl.string("item").notNullable();
@@ -56,11 +57,6 @@ exports.up = function(knex) {
       .inTable("shopping_lists")
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
-  })
-
-
-  .createTable("todo_lists", tbl => {
-    tbl.increments();
   })
   .createTable("todo_task", tbl => {
     tbl.increments();
@@ -79,9 +75,9 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema
     .dropTableIfExists("todo_task")
-    .dropTableIfExists("todo_lists")
     .dropTableIfExists("shopping_list_items")
-    .dropTableIfExists("shopping_lists")
     .dropTableIfExists("parties")
+    .dropTableIfExists("todo_lists")
+    .dropTableIfExists("shopping_lists")
     .dropTableIfExists("users");
 };

@@ -17,13 +17,11 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/auth', authRouter);
-// server.use('/api/parties', authenticate, partiesRouter);
-// server.use('/api/categories', authenticate, categoriesRouter);
-server.use('/api/categories',  categoriesRouter);
-server.use('/api/parties',  partiesRouter); 
+server.use('/api/parties', authenticate, partiesRouter);
+
 
 // for backend
-server.use('/api/users', authenticate, users);
+server.use('/api/users', users);
 
 // stretch goal
 server.use('/api/pictures', authenticate, picturesRouter);

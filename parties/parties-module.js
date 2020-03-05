@@ -2,6 +2,7 @@ const db = require('../database/dbConfig.js');
 
 module.exports = {
   getParties,
+  getPartiesByUserId,
   getPartyById,
   addParty,
   updateParty,
@@ -24,6 +25,10 @@ function getParties() {
   const parties = db('parties')
   return parties
 }
+function getPartiesByUserId(id) {
+  return db('parties').select("*").where({ user_id: id })
+}
+
 async function getPartyById(id) {
   const party = await db('parties').where({ id }).first()
   if (!party) { return false }

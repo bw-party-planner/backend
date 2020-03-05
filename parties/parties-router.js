@@ -10,9 +10,23 @@ const {
   validateTaskId,
 } = require('./parties-middlewere.js')
 
+const User = require('../users/users-model')
+
 /* -------------- /api/parties------------*/
 router.get('/', (req, res) => {
   db.getParties()
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({ errorMessage: 'The party information could not be retrieved' });
+    });
+});
+
+router.get('/user/:id', (req, res) => {
+  const { id } = req.params;
+  db.getPartiesByUserId(id)
     .then(response => {
       res.status(200).json(response);
     })
@@ -35,12 +49,14 @@ router.get('/:id', validatePartyId, (req, res) => {
 });
 
 router.post('/', validateParty, async (req, res) => {
+  // const { id  } = req.body;
   const party = req.body;
   const shopping_lists_id = await db.addShopingList()
   const todo_lists_id = await db.addTodoList()
+  // const user_id = await User.findBy({ id })
   party.shopping_lists_id = `${shopping_lists_id}`
   party.todo_lists_id = `${todo_lists_id}`
-
+  // party.user_id = `${user_id}`
   db.addParty(party)
     .then(response => {
       res.status(201).json(response);

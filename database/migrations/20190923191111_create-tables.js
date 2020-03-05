@@ -30,6 +30,14 @@ exports.up = function(knex) {
       .inTable('todo_lists')
       .onDelete('CASCADE')
       .onUpdate('CASCADE')
+      tbl
+      .integer('user_id')
+      .unsigned()
+      .references('id')
+      .inTable('users')
+      .onDelete('RESTRICT')
+      .onUpdate('CASCADE')
+      .notNullable();
   })
   
 

@@ -1,6 +1,8 @@
 
 **Heroku App URL (need before each method url):`https://mypartyplanner.herokuapp.com`**
 
+**Detabase design `https://app.dbdesigner.net/designer/schema/270093`**
+
 **Register and Login**
 
 
@@ -11,42 +13,6 @@
 
 
 
-**Categories**
-
-| Method | Endpoint             | Description 
-|--------|----------------------|--------------------------------------------------------------------------------------|           
-| GET   | /api/categories        | see example|
-| POST  | /api/categories        | Require `category`  |
-| PUT   | /api/categories/:id    | Muse be validated id  |
-| DELETE| /api/categories/:id    | Muse be validated id  |
-| GET   | /api/categories/:id/party    | Muse be validated id  |
-
-
-
-*Example /GET `/api/categories`*
-```[
-  {
-    "id": 1,
-    "category": "Birthday Party"
-  },
-  {
-    "id": 2,
-    "category": "Dinner Party"
-  },
-  {
-    "id": 3,
-    "category": "Garden party"
-  },
-  {
-    "id": 4,
-    "category": "Helloween Party"
-  },
-  {
-    "id": 5,
-    "category": "Bachelor Party"
-  }
-]
-```
 
 **Parties**
 
@@ -67,7 +33,9 @@
     "theme": "Princess",
     "date": "10/10/2019",
     "budget": "$500",
-    "category_id": 1
+    "shopping_lists_id": 1,
+    "todo_lists_id": 1,
+    "user_id":1
   }
 ]
 ```

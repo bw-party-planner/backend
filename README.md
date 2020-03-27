@@ -42,6 +42,31 @@
 ]
 ```
 
+**Example GET `/api/parties/:id`
+```
+  {
+    "id": 1,
+    "party_name": "Jasmine's 5 year old birthday",
+    "guests": "15",
+    "theme": "Princess",
+    "date": "10/10/2019",
+    "budget": 500,
+    "shopping_lists_id": 1,
+    "todo_lists_id": 1,
+    "user_id":1,
+    "shopping_list": [
+      0: {id: 20, item: "Cake", price: 30, purchased: false, shopping_list_id: 1}
+      1: {id: 21, item: "Beer", price: 100, purchased: false, shopping_list_id: 1}
+      2: {id: 22, item: "Food", price: 200, purchased: false, shopping_list_id: 1}
+    ]
+    "todo_list": [
+      0: {id: 23, task: "invite friends", completed: false, todo_lists_id: 1}
+      1: {id: 24, task: "Order food", completed: false, todo_lists_id: 1}
+      2: {id: 25, task: "Take monday off", completed: false, todo_lists_id: 1}
+    ]
+  }
+```
+
 
 **Party shopping List**
 

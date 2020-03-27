@@ -20,7 +20,7 @@
 |--------|----------------------|--------------------------------------------------------------------------------------|               
 | GET   | /api/parties        |    see example   |
 | GET   | /api/user/:id/parties        |  Must be validated user_id, Get `user_id` from response `/api/auth/login` endpoint |
-| GET   | /api/parties/:id       |   Must be validated id    |
+| GET   | /api/parties/:id       |   Must be validated id, see example   |
 | POST   | /api/parties           | Require `party_name`, `guests`   |
 | PUT   | /api/parties/:id           | Must be validated id  |
 | DELETE| /api/parties/:id           | Must be validated id  |
@@ -68,37 +68,55 @@
 ```
 
 
-**Party shopping List**
+**Shopping List**
 
 | Method | Endpoint             | Description 
 |--------|----------------------|--------------------------------------------------------------------------------------|
-| GET   | /api/parties/:id/shoppingList           | Muse be validated party id / see example |
-| POST   | /api/parties/:id/shoppingList           | Muse be validated party id / Require `item`, `price`, `party_id` |
-| PUT   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
-| DELETE   | /api/parties/:id/shoppingList/:itemId           | Muse be validated party id / Muse be validated item id |
+| GET   | /api/parties/shopping-list/:id/items           | Must be validated shopping_lists_id / see example |
+| GET   | /api/parties/shopping-list/:itemId         | Must be validated  item id / see example |
+| POST   | /api/parties/shopping-item/new           |  Require `item`, `price` |
+| PUT   | /api/parties/shopping-list/:itemId           | Must be validated item id  |
+| DELETE   | /api/parties/shopping-list/:itemId           | Must be validated item id  |
 
-**Example /GET `/api/parties/:id/shoppingList`**
+**Example /GET `/api/parties/shopping-list/:id/items`**
 ```
 [
   {
     "id": 1,
     "item": "Cake",
-    "price": "50"
+    "price": 50
+    "purchased": false, 
+    "shopping_list_id": 1
   },
   {
     "id": 2,
     "item": "Balloon",
-    "price": "10"
+    "price": 10
+    "purchased": false, 
+    "shopping_list_id": 1
   },
   {
     "id": 3,
     "item": "Food",
-    "price": "150"
+    "price": 150
+    "purchased": false, 
+    "shopping_list_id": 1
   }
 ]
 ```
 
-**Party Todo List**
+**Example /GET `/api/parties/shopping-list/:itemId`**
+```
+  {
+    "id": 1,
+    "item": "Cake",
+    "price": 50
+    "purchased": false, 
+    "shopping_list_id": 1
+  }
+```
+
+**Todo List**
 
 | Method | Endpoint             | Description   
 |--------|----------------------|--------------------------------------------------------------------------------------|

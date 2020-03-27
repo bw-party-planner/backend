@@ -19,11 +19,13 @@
 | Method | Endpoint             | Description 
 |--------|----------------------|--------------------------------------------------------------------------------------|               
 | GET   | /api/parties        |    see example   |
-| POST   | /api/parties           | Require `party_name`, `guests`, `category_id`   |
-| PUT   | /api/parties/:id           | Muse be validated id  |
-| DELETE| /api/parties/:id           | Muse be validated id  |
+| GET   | /api/user/:id/parties        |  Must be validated user_id, Get `user_id` from response `/api/auth/login` endpoint |
+| GET   | /api/parties/:id       |   Must be validated id    |
+| POST   | /api/parties           | Require `party_name`, `guests`   |
+| PUT   | /api/parties/:id           | Must be validated id  |
+| DELETE| /api/parties/:id           | Must be validated id  |
 
-**Example /GET `/api/parties`
+**Example GET `/api/parties`
 ```
 [
   {
@@ -32,7 +34,7 @@
     "guests": "15",
     "theme": "Princess",
     "date": "10/10/2019",
-    "budget": "$500",
+    "budget": 500,
     "shopping_lists_id": 1,
     "todo_lists_id": 1,
     "user_id":1
